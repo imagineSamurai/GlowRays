@@ -53,6 +53,7 @@ cd GlowRays
 # Install dependencies
 npm install
 
+
 # Package the extension
 npx vsce package
 
