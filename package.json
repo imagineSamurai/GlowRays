@@ -8,7 +8,7 @@
   "icon": "icon.jpg",
   "repository": {
     "type": "git",
-    "url": "https://github.com/imagineSamurai/VSC-glow-Archive.git"
+    "url": "https://github.com/imagineSamurai/GlowRays.git"
   },
   "engines": {
     "vscode": "^1.80.0"
