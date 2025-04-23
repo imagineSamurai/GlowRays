@@ -3,7 +3,6 @@
 ![VS Code Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/imagineSamurai.glowrays)
 ![VS Code Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/imagineSamurai.glowrays)
 ![VS Code Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/imagineSamurai.glowrays)
-![GitHub](https://img.shields.io/github/license/imagineSamurai/GlowRays)
 
 A Visual Studio Code extension that makes text glow with the same color as the syntax highlighting, creating a beautiful neon effect in your editor.
 
