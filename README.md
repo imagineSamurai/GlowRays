@@ -135,7 +135,7 @@ GlowRays works with most popular VS Code themes. If you encounter issues with a 
 
 ## 📝 Release Notes
 
-### 0.0.1
+### 1.0.0
 
 Initial release of GlowRays Extension:
 - Basic glow effect for text that preserves theme colors
