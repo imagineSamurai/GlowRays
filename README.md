@@ -93,13 +93,20 @@ Add these to your `settings.json` file:
 ## 📸 Screenshots
 
 ### JavaScript with Glow Effect
-![JavaScript Example](assets/javascript-example.png)
+<img src="Assets/javascript-example.png" width="700" alt="JavaScript Glow Effect">
 
 ### Python with Glow Effect
-![Python Example](assets/python-example.png)
+<img src="Assets/python-example.png" width="700" alt="Python Glow Effect">
 
 ### Different Intensity Levels
-![Intensity Comparison](assets/intensity-comparison.png)
+#### intensity = 1
+<img src="Assets/1.png" width="700" alt="Intensity 1">
+
+#### intensity = 10
+<img src="Assets/10.png" width="700" alt="Intensity 10">
+
+#### intensity = 20
+<img src="Assets/20.png" width="700" alt="Intensity 20">
 
 ## 🔍 Troubleshooting
 
@@ -142,7 +149,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR_USERNAME/GlowRays.git
+git clone https://github.com/imagineSamurai/GlowRays.git
 
 # Install dependencies
 npm install
