@@ -23,11 +23,18 @@ A Visual Studio Code extension that makes text glow with the same color as the s
 ## 🔧 Installation
 
 ### VS Code Marketplace
-
+#### First method 
 1. Open **Extensions** sidebar panel in VS Code. (`Ctrl+Shift+X` or `Cmd+Shift+X`)
 2. Search for `GlowRays`
 3. Click **Install**
 4. Reload VS Code
+5. Enjoy the glow!
+
+#### Second method
+1. Visit [GlowRays on Marketplace](https://marketplace.visualstudio.com/items?itemName=imagineSamurai.glowrays).
+2. Click **Install**.
+3. Follow the installation instructions for VS Code.
+4. Reload VS Code.
 5. Enjoy the glow!
 
 ### Direct Download (VSIX)
