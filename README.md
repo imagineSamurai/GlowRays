@@ -14,7 +14,6 @@ A Visual Studio Code extension that makes text glow with the same color as the s
 - **Language Control**: Enable or disable for specific programming languages
 - **Performance Optimized**: Minimal impact on editor performance for most files
 
-![GlowRays Demo](images/demo.gif)
 
 ## 📋 Requirements
 
@@ -103,7 +102,7 @@ Add these to your `settings.json` file:
 <img src="Assets/javascript-example.png" width="700" alt="JavaScript Glow Effect">
 
 ### Python with Glow Effect
-<img src="Assets/python-example.png" width="700" alt="Python Glow Effect">
+<img src="https://github.com/imagineSamurai/GlowRays/blob/main/Assets/python-example.png" width="700" alt="Python Glow Effect">
 
 ### Different Intensity Levels
 #### intensity = 1
