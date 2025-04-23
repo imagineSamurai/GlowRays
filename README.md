@@ -102,7 +102,7 @@ Add these to your `settings.json` file:
 <img src="Assets/javascript-example.png" width="700" alt="JavaScript Glow Effect">
 
 ### Python with Glow Effect
-<img src="https://github.com/imagineSamurai/GlowRays/blob/main/Assets/python-example.png" width="700" alt="Python Glow Effect">
+<img src="https://github.com/imagineSamurai/GlowRays/blob/f7d9ca47845eb9b3981320226313d166126eb814/Assets/python-example.png" width="700" alt="Python Glow Effect">
 
 ### Different Intensity Levels
 #### intensity = 1
