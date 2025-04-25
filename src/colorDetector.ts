@@ -20,6 +20,19 @@ export class ColorDetector {
         const text = document.getText();
         const colorInfos: ColorInfo[] = [];
         
+        // Get configuration - use the correct namespace for the setting
+        const config = vscode.workspace.getConfiguration('glowrays');
+        console.log('Checking GlowOnDefinitionNames setting...');
+        const glowOnDefinitionsEnabled = config.get<boolean>('GlowOnDefinitionNames');
+        console.log(`GlowOnDefinitionNames setting value: ${glowOnDefinitionsEnabled}`);
+        
+        if (glowOnDefinitionsEnabled) {
+            console.log('GlowOnDefinitionNames is enabled, using definition patterns only');
+            // Default targets for definition highlighting
+            const defaultTargets = ["function", "class", "method", "variable"];
+            return this.getDefinitionColors(document, defaultTargets);
+        }
+        
         // Define patterns to match different token types
         // We're only using these to identify the ranges, not to set colors
         const patterns = [
@@ -62,6 +75,86 @@ export class ColorDetector {
         }
         
         console.log(`Total matches found: ${totalMatches}`);
+        
+        return colorInfos;
+    }
+
+    /**
+     * Get colors for definition names only (functions, classes, methods, variables)
+     * @param document The text document
+     * @param targets The target definition types to highlight
+     */
+    private async getDefinitionColors(document: vscode.TextDocument, targets: string[]): Promise<ColorInfo[]> {
+        const colorInfos: ColorInfo[] = [];
+        const text = document.getText();
+        
+        // Get current language ID for language-specific patterns
+        const languageId = document.languageId;
+        console.log(`Detecting definitions for language: ${languageId}`);
+        
+        // Define patterns for each target type
+        const patterns: {[key: string]: RegExp} = {
+            'function': /\bfunction\s+([a-zA-Z_]\w*)\s*\(/g,
+            'class': /\bclass\s+([a-zA-Z_]\w*)\b/g,
+            'method': /(?<=\b(get|set|async|static)?\s*)([a-zA-Z_]\w*)\s*\([^)]*\)\s*{/g,
+            'variable': /\b(const|let|var)\s+([a-zA-Z_]\w*)\b/g
+        };
+        
+        // Add Python-specific patterns
+        if (languageId === 'python') {
+            console.log('Using Python-specific patterns for definition detection');
+            patterns['function'] = /\bdef\s+([a-zA-Z_]\w*)\s*\(/g;
+            patterns['method'] = /\bdef\s+([a-zA-Z_]\w*)\s*\(/g;
+            patterns['class'] = /\bclass\s+([a-zA-Z_]\w*)[:\(]/g;
+            patterns['variable'] = /([a-zA-Z_]\w*)\s*=\s*[^=]/g;
+        }
+        
+        let totalMatches = 0;
+        
+        for (const target of targets) {
+            if (!patterns[target]) {
+                console.log(`No pattern defined for target: ${target}`);
+                continue;
+            }
+            
+            const pattern = patterns[target];
+            pattern.lastIndex = 0;
+            let match;
+            let matchCount = 0;
+            
+            while ((match = pattern.exec(text)) !== null) {
+                matchCount++;
+                totalMatches++;
+                
+                // Capture the identifier name, not the whole match
+                let identifierName: string;
+                let startIndex: number;
+                
+                if (target === 'variable' && languageId !== 'python') {
+                    // For variables, the name is in capturing group 2
+                    identifierName = match[2];
+                    startIndex = match.index + match[0].indexOf(match[2]);
+                } else {
+                    // For functions, classes, etc. the name is in capturing group 1
+                    identifierName = match[1] || match[0];
+                    startIndex = match.index + match[0].indexOf(identifierName);
+                }
+                
+                const startPos = document.positionAt(startIndex);
+                const endPos = document.positionAt(startIndex + identifierName.length);
+                
+                // Add to results
+                colorInfos.push({
+                    word: identifierName,
+                    range: new vscode.Range(startPos, endPos),
+                    color: 'currentColor'
+                });
+            }
+            
+            console.log(`Target '${target}' matched ${matchCount} definitions`);
+        }
+        
+        console.log(`Total definition matches found: ${totalMatches}`);
         
         return colorInfos;
     }

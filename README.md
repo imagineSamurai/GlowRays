@@ -4,12 +4,21 @@
 ![VS Code Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/imagineSamurai.glowrays)
 ![VS Code Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/imagineSamurai.glowrays)
 
+> ## ⚠️ DYNAMIC FEATURES ALPHA NOTICE
+> The core glow functionality of this extension works great! Only the **dynamic intensity feature** is currently in alpha development.
+> Due to VS Code API limitations, the dynamic glow effect may cause performance issues on some systems.
+> Dynamic features are disabled by default and can be manually enabled if desired.
+> 
+> **If you can fix it, fork it!** Contributions to improve the dynamic features are welcome.
+
 A Visual Studio Code extension that makes text glow with the same color as the syntax highlighting, creating a beautiful neon effect in your editor.
 
 ## ✨ Features
 
 - **Glowing Text**: Applies a customizable glow effect to text in the editor
 - **Theme Compatible**: Preserves the original syntax highlighting colors from your theme
+- **Error Highlighting**: Automatically disables glow effect on lines containing errors
+- **Dynamic Intensity**: Makes the glow effect "breathe" by automatically varying the intensity over time
 - **Configurable**: Adjust glow intensity to match your preferences
 - **Language Control**: Enable or disable for specific programming languages
 - **Performance Optimized**: Minimal impact on editor performance for most files
@@ -70,10 +79,14 @@ code --install-extension glowrays-*.vsix
 
 This extension contributes the following settings:
 
-* `vscodeGlow.enable`: Enable/disable the glow effect globally
-* `vscodeGlow.intensity`: Intensity of the glow effect (1-10)
-* `vscodeGlow.includeLanguages`: Languages to include for glow effect (e.g., `["javascript", "python"]`)
-* `vscodeGlow.excludeLanguages`: Languages to exclude from glow effect (e.g., `["markdown", "json"]`)
+* `glowrays.enable`: Enable/disable the glow effect globally
+* `glowrays.intensity`: Intensity of the glow effect (1-10)
+* `glowrays.includeLanguages`: Languages to include for glow effect (e.g., `["javascript", "python"]`)
+* `glowrays.excludeLanguages`: Languages to exclude from glow effect (e.g., `["markdown", "json"]`)
+* `glowrays.disableOnErrors`: Enable/disable automatic disabling of glow effect on lines with errors (default: true)
+* `glowrays.dynamic.config`: **(ALPHA)** Dynamic intensity configuration in format 'min max speed enabled' (e.g., '3 8 5 true'). **Disabled by default** - set the last parameter to 'true' to enable.
+* `glowrays.pauseAnimationWhileTyping`: **(ALPHA)** Pause animation updates during typing to prevent flickering. Only relevant when dynamic features are enabled.
+* `glowrays.GlowOnDefinitionNames`: Apply glow effect only to specific code elements like function names, class definitions, etc. **Disabled by default**.
 
 ## 🚀 Getting Started
 
@@ -89,30 +102,50 @@ Add these to your `settings.json` file:
 
 ```json
 {
-    "vscodeGlow.enable": true,
-    "vscodeGlow.intensity": 7,
-    "vscodeGlow.includeLanguages": ["javascript", "typescript", "python"],
-    "vscodeGlow.excludeLanguages": ["markdown", "plaintext"]
+    "glowrays.enable": true,
+    "glowrays.intensity": 7,
+    "glowrays.includeLanguages": ["javascript", "typescript", "python"],
+    "glowrays.excludeLanguages": ["markdown", "plaintext"],
+    "glowrays.disableOnErrors": true,
+    "glowrays.dynamic.config": "3 8 5 false",
+    "glowrays.pauseAnimationWhileTyping": false
+}
+```
+
+If you want to enable the experimental dynamic features (may affect performance):
+
+```json
+{
+    "glowrays.dynamic.config": "3 8 5 true",
+    "glowrays.pauseAnimationWhileTyping": true
+}
+```
+
+If you want to enable the focused definition glow feature:
+
+```json
+{
+    "glowrays.GlowOnDefinitionNames": true
 }
 ```
 
 ## 📸 Screenshots
 
 ### JavaScript with Glow Effect
-<img src="Assets/javascript-example.png" width="700" alt="JavaScript Glow Effect">
+<img src="assets/javascript-example.png" width="700" alt="JavaScript Glow Effect">
 
 ### Python with Glow Effect
-<img src="https://github.com/imagineSamurai/GlowRays/blob/f7d9ca47845eb9b3981320226313d166126eb814/Assets/python-example.png" width="700" alt="Python Glow Effect">
+<img src="https://github.com/imagineSamurai/GlowRays/blob/f7d9ca47845eb9b3981320226313d166126eb814/assets/python-example.png" width="700" alt="Python Glow Effect">
 
 ### Different Intensity Levels
 #### intensity = 1
-<img src="Assets/1.png" width="700" alt="Intensity 1">
+<img src="assets/1.png" width="700" alt="Intensity 1">
 
 #### intensity = 10
-<img src="Assets/10.png" width="700" alt="Intensity 10">
+<img src="assets/10.png" width="700" alt="Intensity 10">
 
 #### intensity = 20
-<img src="Assets/20.png" width="700" alt="Intensity 20">
+<img src="assets/20.png" width="700" alt="Intensity 20">
 
 ## 🔍 Troubleshooting
 
@@ -121,6 +154,16 @@ Add these to your `settings.json` file:
 - **Extension not working after installation**: Make sure to reload VS Code after installation
 - **No glow effect visible**: Check if your theme has sufficient contrast for the glow to be visible
 - **Performance issues with large files**: Try reducing the intensity level in settings
+- **Flickering or flashing while typing**: Ensure that `glowrays.pauseAnimationWhileTyping` is set to `true` (the default). This will keep the glow static while you type, preventing any disruptions.
+
+### Avoiding Editor Flashing/Flickering
+
+If you experience any disruptions or flickering while typing:
+
+1. Make sure `glowrays.pauseAnimationWhileTyping` is enabled (it is by default)
+2. Use a moderate glow intensity (3-8 is recommended)
+3. If using dynamic glow, use a narrower range in your `glowrays.dynamic.config` setting (e.g., "3 6 5 true")
+4. Try disabling other extensions that modify text appearance to avoid conflicts
 
 ### Compatibility
 
@@ -128,11 +171,31 @@ GlowRays works with most popular VS Code themes. If you encounter issues with a 
 
 ## ⚠️ Known Issues
 
-- Performance may be impacted on large files
-- Some color themes may produce inconsistent glow effects
-- Might not work properly with certain custom font settings
+- **Dynamic features limitations**: The dynamic intensity feature is still in alpha development and may cause performance issues, flickering, or editor lag on some systems.
+- **Large files impact**: Performance may be impacted on large files, especially with dynamic features enabled.
+- **Theme compatibility**: Some color themes may produce inconsistent glow effects.
+- **Custom fonts**: Might not work properly with certain custom font settings.
+
+**If you can fix it, fork it!** Pull requests to address these issues are greatly appreciated!
+
+### Performance Recommendations
+
+If you experience performance issues with dynamic features:
+
+1. Keep `glowrays.dynamic.config` disabled by leaving the last parameter as "false"
+2. Use a static intensity value instead (the default setting)
+3. Consider disabling the extension for very large files
 
 ## 📝 Release Notes
+
+### 1.2.0
+
+- Added dynamic intensity feature (alpha) that makes the glow effect "breathe" by automatically varying intensity over time
+- Added pause animation while typing feature (alpha) to reduce flickering during editing
+- Added automatic error detection feature that disables glow on lines with errors
+- Added configuration options for dynamic features
+- Added GlowOnDefinitionNames feature to focus glow effect only on code definitions
+- Performance improvements and bug fixes
 
 ### 1.0.0
 

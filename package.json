@@ -1,8 +1,8 @@
 {
   "name": "glowrays",
   "displayName": "GlowRays",
-  "description": "Makes text in the editor glow with the same color as the word itself",
-  "version": "0.0.1",
+  "description": "Makes text in the editor glow with the same color as the word itself, automatically disabling glow on lines with errors",
+  "version": "1.2.0",
   "publisher": "ImagineSamurai",
   "license": "MIT",
   "icon": "icon.jpg",
@@ -24,32 +24,52 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscodeGlow.toggle",
+        "command": "glowrays.toggle",
         "title": "Toggle GlowRays Effect"
       }
     ],
     "configuration": {
       "title": "GlowRays",
       "properties": {
-        "vscodeGlow.enable": {
+        "glowrays.enable": {
           "type": "boolean",
           "default": true,
           "description": "Enable/disable the glow effect"
         },
-        "vscodeGlow.intensity": {
+        "glowrays.intensity": {
           "type": "number",
           "default": 5,
           "description": "Intensity of the glow effect (1-10)"
         },
-        "vscodeGlow.includeLanguages": {
+        "glowrays.includeLanguages": {
           "type": "array",
           "default": ["*"],
           "description": "Languages to include for glow effect"
         },
-        "vscodeGlow.excludeLanguages": {
+        "glowrays.excludeLanguages": {
           "type": "array",
           "default": [],
           "description": "Languages to exclude from glow effect"
+        },
+        "glowrays.disableOnErrors": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically disable glow effect on lines with errors"
+        },
+        "glowrays.dynamic.config": {
+          "type": "string",
+          "default": "3 8 5 false",
+          "description": "Dynamic intensity configuration in format 'min max speed enabled' (e.g., '3 8 5 true'). Set the last parameter to 'true' to enable."
+        },
+        "glowrays.pauseAnimationWhileTyping": {
+          "type": "boolean",
+          "default": false,
+          "description": "Pause animation updates during typing to prevent flickering (may affect performance on some systems)"
+        },
+        "glowrays.GlowOnDefinitionNames": {
+          "type": "boolean",
+          "default": false,
+          "description": "Apply glow effect only to specific code elements like function definitions, class names, etc."
         }
       }
     }
