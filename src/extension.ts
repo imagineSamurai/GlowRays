@@ -14,8 +14,8 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.window.showInformationMessage('GlowRays extension is now active');
 
 	// Register a command that can be invoked to toggle the extension
-	const toggleCommand = vscode.commands.registerCommand('glowrays.toggle', () => {
-		const config = vscode.workspace.getConfiguration('glowrays');
+	const toggleCommand = vscode.commands.registerCommand('vscodeGlow.toggle', () => {
+		const config = vscode.workspace.getConfiguration('vscodeGlow');
 		const isEnabled = config.get<boolean>('enable');
 		config.update('enable', !isEnabled, true);
 		vscode.window.showInformationMessage(`GlowRays: ${!isEnabled ? 'Enabled' : 'Disabled'}`);
@@ -24,7 +24,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// Subscribe to configuration changes
 	context.subscriptions.push(
 		vscode.workspace.onDidChangeConfiguration(event => {
-			if (event.affectsConfiguration('glowrays')) {
+			if (event.affectsConfiguration('vscodeGlow')) {
 				updateDecorations();
 			}
 		})
@@ -34,11 +34,8 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.window.onDidChangeActiveTextEditor(editor => {
 			if (editor) {
-				console.log(`Active editor changed to ${editor.document.languageId}, triggering update`);
-				// Force immediate update for language changes
-				clearTimeout(timeout);
-				timeout = undefined;
-				updateDecorations();
+				console.log('Active editor changed, triggering update');
+				triggerUpdateDecorations();
 			}
 		})
 	);
@@ -81,7 +78,7 @@ function updateDecorations() {
 		return;
 	}
 
-	const config = vscode.workspace.getConfiguration('glowrays');
+	const config = vscode.workspace.getConfiguration('vscodeGlow');
 	const isEnabled = config.get<boolean>('enable');
 	
 	console.log(`GlowRays enabled: ${isEnabled}`);
@@ -150,13 +147,7 @@ async function applyDecorations(editor: vscode.TextEditor, intensity: number) {
 	const document = editor.document;
 	const editorId = document.uri.toString();
 	
-	console.log(`Applying decorations to editor: ${editorId} with base intensity: ${intensity}`);
-	
-	// Get configuration and check if GlowOnDefinitionNames is enabled
-	const config = vscode.workspace.getConfiguration('glowrays');
-	console.log('Checking GlowOnDefinitionNames setting in applyDecorations...');
-	const glowOnDefinitionsEnabled = config.get<boolean>('GlowOnDefinitionNames');
-	console.log(`GlowOnDefinitionNames in applyDecorations: ${glowOnDefinitionsEnabled}`);
+	console.log(`Applying decorations to editor: ${editorId} with intensity: ${intensity}`);
 	
 	// Get colors for all words in the document
 	const colorInfos = await colorDetector.getColors(document);

@@ -3,6 +3,7 @@
 ![VS Code Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/imagineSamurai.glowrays)
 ![VS Code Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/imagineSamurai.glowrays)
 ![VS Code Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/imagineSamurai.glowrays)
+![Twitter Follow](https://img.shields.io/twitter/follow/GlowRays_VSC?style=social)
 
 > ## ⚠️ DYNAMIC FEATURES ALPHA NOTICE
 > The core glow functionality of this extension works great! Only the **dynamic intensity feature** is currently in alpha development.
@@ -244,4 +245,5 @@ If you find this extension useful, please consider:
 - ⭐ Star this repository on GitHub
 - 🌟 Rate it on the VS Code Marketplace
 - 📢 Share it with friends and colleagues
+- 🐦 Follow us on X (Twitter): [@GlowRays_VSC](https://twitter.com/GlowRays_VSC)
 - ☕ You can support me by using [Ko-fi](https://ko-fi.com/imaginesamurai)
