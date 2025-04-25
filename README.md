@@ -132,20 +132,20 @@ If you want to enable the focused definition glow feature:
 ## 📸 Screenshots
 
 ### JavaScript with Glow Effect
-<img src="assets/javascript-example.png" width="700" alt="JavaScript Glow Effect">
+<img src="https://github.com/imagineSamurai/GlowRays/blob/9065fb6ae926bf9634fbd17c223c8774fb3ff062/assets/javascript-example.png" width="700" alt="JavaScript Glow Effect">
 
 ### Python with Glow Effect
-<img src="https://github.com/imagineSamurai/GlowRays/blob/f7d9ca47845eb9b3981320226313d166126eb814/assets/python-example.png" width="700" alt="Python Glow Effect">
+<img src="https://github.com/imagineSamurai/GlowRays/blob/9065fb6ae926bf9634fbd17c223c8774fb3ff062/assets/python-example.png" width="700" alt="Python Glow Effect">
 
 ### Different Intensity Levels
 #### intensity = 1
-<img src="assets/1.png" width="700" alt="Intensity 1">
+<img src="https://github.com/imagineSamurai/GlowRays/blob/3ca3acb044338f51894313e5d545c34b51cce821/assets/1.png" width="700" alt="Intensity 1">
 
 #### intensity = 10
-<img src="assets/10.png" width="700" alt="Intensity 10">
+<img src="https://github.com/imagineSamurai/GlowRays/blob/3ca3acb044338f51894313e5d545c34b51cce821/assets/10.png" width="700" alt="Intensity 10">
 
 #### intensity = 20
-<img src="assets/20.png" width="700" alt="Intensity 20">
+<img src="https://github.com/imagineSamurai/GlowRays/blob/3ca3acb044338f51894313e5d545c34b51cce821/assets/20.png" width="700" alt="Intensity 20">
 
 ## 🔍 Troubleshooting
 
