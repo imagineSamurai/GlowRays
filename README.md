@@ -231,6 +231,16 @@ If you experience performance issues with dynamic features:
 
 ## 📝 Release Notes
 
+### Version 1.3.1
+
+> We are excited to announce the release of **Version 1.3.1**!
+> 
+> This update was issued to address a technical issue encountered during the publishing process to the marketplace.  
+> There were no code changes or feature updates compared to Version 1.3.0.  
+> The sole purpose of this release is to ensure proper delivery and availability of the extension/application for all users through the marketplace.
+
+
+
 ### 📝 What's New in v1.3.0
 
 - **Settings UI**: Visual interface to configure all GlowRays settings
