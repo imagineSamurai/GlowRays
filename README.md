@@ -1,9 +1,9 @@
 # GlowRays VSCode Extension
 
-![VS Code Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/imagineSamurai.glowrays)
-![VS Code Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/imagineSamurai.glowrays)
-![VS Code Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/imagineSamurai.glowrays)
-![Twitter Follow](https://img.shields.io/twitter/follow/GlowRays_VSC?style=social)
+<a href="https://marketplace.visualstudio.com/items?itemName=imagineSamurai.glowrays">![VS Code Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/imagineSamurai.glowrays)</a>
+<a href="https://marketplace.visualstudio.com/items?itemName=imagineSamurai.glowrays">![VS Code Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/imagineSamurai.glowrays)</a>
+<a href="https://marketplace.visualstudio.com/items?itemName=imagineSamurai.glowrays">![VS Code Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/imagineSamurai.glowrays)</a>
+<a href="https://x.com/GlowRays_VSC">![Twitter Follow](https://img.shields.io/twitter/follow/GlowRays_VSC?style=social)</a>
 
 > ## ⚠️ DYNAMIC FEATURES ALPHA NOTICE
 > The core glow functionality of this extension works great! Only the **dynamic intensity feature** is currently in alpha development.
@@ -132,21 +132,23 @@ If you want to enable the focused definition glow feature:
 
 ## 📸 Screenshots
 
+[Quick comment]: <> (All the photos are in /assets. Images were not displaying in the marketplace. After several attempts, I found a solution: I uploaded the images to my website and linked them through the markdown file.)
+
 ### JavaScript with Glow Effect
-<img src="https://github.com/imagineSamurai/GlowRays/blob/9065fb6ae926bf9634fbd17c223c8774fb3ff062/assets/javascript-example.png" width="700" alt="JavaScript Glow Effect">
+<img src="https://hybridipa-blog.web.app/assets/images/GlowRays/javascript-example.png" width="700" alt="JavaScript Glow Effect">
 
 ### Python with Glow Effect
-<img src="https://github.com/imagineSamurai/GlowRays/blob/9065fb6ae926bf9634fbd17c223c8774fb3ff062/assets/python-example.png" width="700" alt="Python Glow Effect">
+<img src="https://hybridipa-blog.web.app/assets/images/GlowRays/python-example.png" width="700" alt="Python Glow Effect">
 
 ### Different Intensity Levels
 #### intensity = 1
-<img src="https://github.com/imagineSamurai/GlowRays/blob/3ca3acb044338f51894313e5d545c34b51cce821/assets/1.png" width="700" alt="Intensity 1">
+<img src="https://hybridipa-blog.web.app/assets/images/GlowRays/1.png" width="700" alt="Intensity 1">
 
 #### intensity = 10
-<img src="https://github.com/imagineSamurai/GlowRays/blob/3ca3acb044338f51894313e5d545c34b51cce821/assets/10.png" width="700" alt="Intensity 10">
+<img src="https://hybridipa-blog.web.app/assets/images/GlowRays/10.png" width="700" alt="Intensity 10">
 
 #### intensity = 20
-<img src="https://github.com/imagineSamurai/GlowRays/blob/3ca3acb044338f51894313e5d545c34b51cce821/assets/20.png" width="700" alt="Intensity 20">
+<img src="https://hybridipa-blog.web.app/assets/images/GlowRays/20.png" width="700" alt="Intensity 20">
 
 ## 🔍 Troubleshooting
 
