@@ -2,7 +2,7 @@
   "name": "glowrays",
   "displayName": "GlowRays",
   "description": "Makes text in the editor glow with the same color as the word itself, automatically disabling glow on lines with errors",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "publisher": "ImagineSamurai",
   "license": "MIT",
   "icon": "icon.jpg",
@@ -26,6 +26,10 @@
       {
         "command": "glowrays.toggle",
         "title": "Toggle GlowRays Effect"
+      },
+      {
+        "command": "glowrays.openSettings",
+        "title": "Open GlowRays Settings"
       }
     ],
     "configuration": {
@@ -70,6 +74,11 @@
           "type": "boolean",
           "default": false,
           "description": "Apply glow effect only to specific code elements like function definitions, class names, etc."
+        },
+        "glowrays.advancedMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable advanced settings mode with additional configuration options"
         }
       }
     }

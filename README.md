@@ -18,10 +18,23 @@ A Visual Studio Code extension that makes text glow with the same color as the s
 
 - **Glowing Text**: Applies a customizable glow effect to text in the editor
 - **Theme Compatible**: Preserves the original syntax highlighting colors from your theme
-- **Error Highlighting**: Automatically disables glow effect on lines containing errors
-- **Dynamic Intensity**: Makes the glow effect "breathe" by automatically varying the intensity over time
-- **Configurable**: Adjust glow intensity to match your preferences
+- **Error Highlighting**: Automatically disables glow effect on lines with errors
+- **Dynamic Glow Effects**: (v1.3.0)
+  - "Breathing" effect that animates intensity over time
+  - Customizable min/max intensity range
+  - Adjustable animation speed 
+  - Pause animation while typing option to reduce distractions
+- **Visual Settings UI**: (v1.3.0)
+  - Dedicated interface for all configuration options
+  - Intuitive sliders and toggles for easy adjustments
+  - Warning dialogs for experimental features
+  - Real-time preview of settings changes
+- **Advanced Settings Mode**: (v1.3.0)
+  - Access to higher intensity levels beyond standard limits
+  - Fine-grained control over dynamic glow parameters
+  - Performance warnings for low-end devices
 - **Language Control**: Enable or disable for specific programming languages
+- **Selective Glow**: Option to apply glow only to specific code elements like function definitions and class names
 - **Performance Optimized**: Minimal impact on editor performance for most files
 
 
@@ -80,22 +93,47 @@ code --install-extension glowrays-*.vsix
 
 This extension contributes the following settings:
 
+### Basic Settings
+
 * `glowrays.enable`: Enable/disable the glow effect globally
 * `glowrays.intensity`: Intensity of the glow effect (1-10)
 * `glowrays.includeLanguages`: Languages to include for glow effect (e.g., `["javascript", "python"]`)
 * `glowrays.excludeLanguages`: Languages to exclude from glow effect (e.g., `["markdown", "json"]`)
 * `glowrays.disableOnErrors`: Enable/disable automatic disabling of glow effect on lines with errors (default: true)
-* `glowrays.dynamic.config`: **(ALPHA)** Dynamic intensity configuration in format 'min max speed enabled' (e.g., '3 8 5 true'). **Disabled by default** - set the last parameter to 'true' to enable.
-* `glowrays.pauseAnimationWhileTyping`: **(ALPHA)** Pause animation updates during typing to prevent flickering. Only relevant when dynamic features are enabled.
-* `glowrays.GlowOnDefinitionNames`: Apply glow effect only to specific code elements like function names, class definitions, etc. **Disabled by default**.
+* `glowrays.GlowOnDefinitionNames`: Apply glow effect only to specific code elements like function names, class definitions, etc. (default: false)
+
+### Advanced Settings (v1.3.0)
+
+* `glowrays.advancedMode`: Enable advanced settings mode with additional configuration options (default: false)
+* `glowrays.dynamic.config`: Dynamic intensity configuration in format 'min max speed enabled' (e.g., '3 8 5 true'). Set the last parameter to 'true' to enable.
+  * First value: Minimum intensity (1-10)
+  * Second value: Maximum intensity (2-30)
+  * Third value: Animation speed (1-10, higher is faster)
+  * Fourth value: Enabled state ('true' or 'false')
+* `glowrays.pauseAnimationWhileTyping`: Pause animation updates during typing to prevent flickering (default: false)
 
 ## 🚀 Getting Started
 
-After installation, the extension is enabled by default with medium intensity. You can customize the settings by:
+After installation, the extension is enabled by default with medium intensity. You can customize the settings in two ways:
 
-1. Opening VS Code settings (`Ctrl+,` or `Cmd+,`)
-2. Searching for "GlowRays"
-3. Adjusting the settings to your preference
+### Using the Visual Settings UI (Recommended)
+
+The new visual Settings UI in v1.3.0 makes it easy to configure all aspects of GlowRays:
+
+1. Press `Ctrl+Shift+P` or `Cmd+Shift+P` to open the command palette
+2. Type "Open GlowRays Settings" and select it
+3. Use the friendly interface to adjust your settings:
+   - Basic settings are shown by default
+   - Toggle "Advanced Settings" to access dynamic glow features and high-intensity options
+   - All changes are saved automatically
+
+### Using VS Code Settings
+
+Alternatively, you can configure GlowRays through the standard VS Code settings:
+
+1. Open VS Code settings (`Ctrl+,` or `Cmd+,`)
+2. Search for "GlowRays"
+3. Adjust the settings to your preference
 
 ### Example JSON Settings
 
@@ -107,22 +145,21 @@ Add these to your `settings.json` file:
     "glowrays.intensity": 7,
     "glowrays.includeLanguages": ["javascript", "typescript", "python"],
     "glowrays.excludeLanguages": ["markdown", "plaintext"],
-    "glowrays.disableOnErrors": true,
-    "glowrays.dynamic.config": "3 8 5 false",
-    "glowrays.pauseAnimationWhileTyping": false
+    "glowrays.disableOnErrors": true
 }
 ```
 
-If you want to enable the experimental dynamic features (may affect performance):
+To enable advanced features (v1.3.0):
 
 ```json
 {
+    "glowrays.advancedMode": true,
     "glowrays.dynamic.config": "3 8 5 true",
     "glowrays.pauseAnimationWhileTyping": true
 }
 ```
 
-If you want to enable the focused definition glow feature:
+To enable the focused definition glow feature:
 
 ```json
 {
@@ -191,6 +228,27 @@ If you experience performance issues with dynamic features:
 
 ## 📝 Release Notes
 
+### 📝 What's New in v1.3.0
+
+- **Settings UI**: Visual interface to configure all GlowRays settings
+- **Advanced Settings Mode**: Dedicated section for advanced features with warning for low-end devices
+- **Enhanced Dynamic Glow**: Improved "breathing" glow effect with:
+  - Customizable minimum and maximum intensity values
+  - Adjustable animation speed via intuitive volume slider
+  - Warning dialog explaining alpha status
+  - Improved performance when typing
+- **Improved UI/UX**:
+  - Intuitive volume sliders for all numeric settings
+  - Automatic greying out of controls when features are disabled
+  - Warning dialogs for experimental features
+  - More descriptive tooltips and labels
+- **User-Friendly Inputs**: Simplified language selection with intuitive tag system
+- **Improved Visuals**: Better labels and descriptions for all settings
+- **Bug Fixes**: Various small improvements and fixes including:
+  - Fixed settings persistence for Advanced Mode
+  - Improved dynamic glow animation smoothness
+  - Better error handling for configuration
+
 ### 1.2.0
 
 - Added dynamic intensity feature (alpha) that makes the glow effect "breathe" by automatically varying intensity over time
@@ -249,3 +307,4 @@ If you find this extension useful, please consider:
 - 📢 Share it with friends and colleagues
 - 🐦 Follow us on X (Twitter): [@GlowRays_VSC](https://twitter.com/GlowRays_VSC)
 - ☕ You can support me by using [Ko-fi](https://ko-fi.com/imaginesamurai)
+

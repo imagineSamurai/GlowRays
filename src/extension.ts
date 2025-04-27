@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { colorDetector } from './colorDetector';
+import { SettingsUI } from './settingsUI';
 
 // Keep track of decorations for each editor and each color
 const decorationTypesMap = new Map<string, Map<string, vscode.TextEditorDecorationType>>();
@@ -7,25 +8,53 @@ const decorationTypesMap = new Map<string, Map<string, vscode.TextEditorDecorati
 // Timeout for debouncing updates
 let timeout: NodeJS.Timeout | undefined = undefined;
 
+// Dynamic glow animation timer
+let dynamicGlowTimer: NodeJS.Timeout | undefined = undefined;
+let currentDynamicIntensity: number = 5;
+let dynamicDirection: 'up' | 'down' = 'up';
+let lastTypingTime: number = 0;
+
 export function activate(context: vscode.ExtensionContext) {
 	console.log('GlowRays extension is now active');
 	
 	// Show a notification to confirm activation
 	vscode.window.showInformationMessage('GlowRays extension is now active');
 
+	// Make sure advancedMode is initialized
+	const config = vscode.workspace.getConfiguration('glowrays');
+	if (config.get('advancedMode') === undefined) {
+		config.update('advancedMode', false, true);
+	}
+
 	// Register a command that can be invoked to toggle the extension
-	const toggleCommand = vscode.commands.registerCommand('vscodeGlow.toggle', () => {
-		const config = vscode.workspace.getConfiguration('vscodeGlow');
+	const toggleCommand = vscode.commands.registerCommand('glowrays.toggle', () => {
+		const config = vscode.workspace.getConfiguration('glowrays');
 		const isEnabled = config.get<boolean>('enable');
 		config.update('enable', !isEnabled, true);
 		vscode.window.showInformationMessage(`GlowRays: ${!isEnabled ? 'Enabled' : 'Disabled'}`);
+	});
+	
+	// Register a command to open the settings UI
+	const settingsCommand = vscode.commands.registerCommand('glowrays.openSettings', () => {
+		SettingsUI.createOrShow(context.extensionUri);
 	});
 
 	// Subscribe to configuration changes
 	context.subscriptions.push(
 		vscode.workspace.onDidChangeConfiguration(event => {
-			if (event.affectsConfiguration('vscodeGlow')) {
+			if (event.affectsConfiguration('glowrays')) {
 				updateDecorations();
+				
+				// Check if we need to start or stop dynamic glow
+				const dynamicConfig = config.get<string>('dynamic.config', '3 8 5 false');
+				const dynamicParts = dynamicConfig.split(' ');
+				const isDynamicEnabled = dynamicParts.length >= 4 && dynamicParts[3] === 'true';
+				
+				if (isDynamicEnabled) {
+					startDynamicGlow();
+				} else {
+					stopDynamicGlow();
+				}
 			}
 		})
 	);
@@ -39,33 +68,130 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 		})
 	);
-
-	// Subscribe to document changes
+	
+	// Subscribe to document changes to track typing
 	context.subscriptions.push(
-		vscode.workspace.onDidChangeTextDocument(event => {
-			const editor = vscode.window.activeTextEditor;
-			if (editor && event.document === editor.document) {
-				console.log('Document changed, triggering update');
-				triggerUpdateDecorations();
-			}
+		vscode.workspace.onDidChangeTextDocument(() => {
+			lastTypingTime = Date.now();
+			triggerUpdateDecorations();
 		})
 	);
+	
+	// Check if dynamic glow should be enabled at startup
+	const dynamicConfig = config.get<string>('dynamic.config', '3 8 5 false');
+	const dynamicParts = dynamicConfig.split(' ');
+	const isDynamicEnabled = dynamicParts.length >= 4 && dynamicParts[3] === 'true';
+	
+	if (isDynamicEnabled) {
+		startDynamicGlow();
+	}
+
+	// Add rest of the plugin registration
+	context.subscriptions.push(toggleCommand, settingsCommand);
 
 	// Initial update
 	triggerUpdateDecorations();
+}
 
-	context.subscriptions.push(toggleCommand);
+export function deactivate() {
+	console.log('GlowRays extension deactivated');
+	clearDecorations();
+	stopDynamicGlow();
 }
 
 /**
- * Trigger an update of the decorations after a delay
+ * Start the dynamic glow effect animation
+ */
+function startDynamicGlow() {
+	// Stop any existing timer
+	stopDynamicGlow();
+	
+	const config = vscode.workspace.getConfiguration('glowrays');
+	const dynamicConfig = config.get<string>('dynamic.config', '3 8 5 false');
+	const dynamicParts = dynamicConfig.split(' ');
+	
+	// Get dynamic settings
+	const minIntensity = parseFloat(dynamicParts[0] || '3');
+	const maxIntensity = parseFloat(dynamicParts[1] || '8');
+	const speedValue = parseInt(dynamicParts[2] || '5', 10);
+	
+	// Set initial intensity to min
+	currentDynamicIntensity = minIntensity;
+	dynamicDirection = 'up';
+	
+	// Calculate update interval based on speed (1-10)
+	// Speed 1 = slow (500ms), Speed 10 = fast (50ms)
+	const updateInterval = 550 - (speedValue * 50);
+	
+	console.log(`Starting dynamic glow with min: ${minIntensity}, max: ${maxIntensity}, speed: ${speedValue} (${updateInterval}ms)`);
+	
+	// Start the animation timer
+	dynamicGlowTimer = setInterval(() => {
+		// Check if we should pause while typing
+		const pauseWhileTyping = config.get<boolean>('pauseAnimationWhileTyping', false);
+		if (pauseWhileTyping && (Date.now() - lastTypingTime < 1000)) {
+			// User is typing, pause animation
+			return;
+		}
+		
+		// Update the intensity based on direction
+		if (dynamicDirection === 'up') {
+			currentDynamicIntensity += 0.1;
+			if (currentDynamicIntensity >= maxIntensity) {
+				currentDynamicIntensity = maxIntensity;
+				dynamicDirection = 'down';
+			}
+		} else {
+			currentDynamicIntensity -= 0.1;
+			if (currentDynamicIntensity <= minIntensity) {
+				currentDynamicIntensity = minIntensity;
+				dynamicDirection = 'up';
+			}
+		}
+		
+		// Apply the new intensity
+		updateDecorationsWithDynamicIntensity();
+		
+	}, updateInterval);
+}
+
+/**
+ * Stop the dynamic glow animation
+ */
+function stopDynamicGlow() {
+	if (dynamicGlowTimer) {
+		clearInterval(dynamicGlowTimer);
+		dynamicGlowTimer = undefined;
+		console.log('Dynamic glow animation stopped');
+		
+		// Restore normal decorations
+		updateDecorations();
+	}
+}
+
+/**
+ * Update decorations with the current dynamic intensity
+ */
+function updateDecorationsWithDynamicIntensity() {
+	const editor = vscode.window.activeTextEditor;
+	if (!editor) {
+		return;
+	}
+	
+	console.log(`Applying dynamic intensity: ${currentDynamicIntensity.toFixed(1)}`);
+	applyDecorations(editor, currentDynamicIntensity);
+}
+
+/**
+ * Trigger an update to the text decorations, debounced
  */
 function triggerUpdateDecorations() {
 	if (timeout) {
 		clearTimeout(timeout);
 		timeout = undefined;
 	}
-	timeout = setTimeout(updateDecorations, 300);
+	
+	timeout = setTimeout(updateDecorations, 500);
 }
 
 /**
@@ -78,7 +204,7 @@ function updateDecorations() {
 		return;
 	}
 
-	const config = vscode.workspace.getConfiguration('vscodeGlow');
+	const config = vscode.workspace.getConfiguration('glowrays');
 	const isEnabled = config.get<boolean>('enable');
 	
 	console.log(`GlowRays enabled: ${isEnabled}`);
@@ -89,7 +215,20 @@ function updateDecorations() {
 		return;
 	}
 
-	const intensity = config.get<number>('intensity') || 5;
+	// Check if dynamic mode is enabled
+	const dynamicConfig = config.get<string>('dynamic.config', '3 8 5 false');
+	const dynamicParts = dynamicConfig.split(' ');
+	const isDynamicEnabled = dynamicParts.length >= 4 && dynamicParts[3] === 'true';
+	
+	// Use static or dynamic intensity
+	let intensity: number;
+	if (isDynamicEnabled && dynamicGlowTimer) {
+		intensity = currentDynamicIntensity;
+		console.log(`Using dynamic intensity: ${intensity.toFixed(1)}`);
+	} else {
+		intensity = config.get<number>('intensity') || 5;
+	}
+	
 	const includeLanguages = config.get<string[]>('includeLanguages') || ['*'];
 	const excludeLanguages = config.get<string[]>('excludeLanguages') || [];
 
@@ -190,9 +329,4 @@ async function applyDecorations(editor: vscode.TextEditor, intensity: number) {
 		// Apply decorations to editor
 		editor.setDecorations(decorationType, ranges);
 	});
-}
-
-export function deactivate() {
-	console.log('GlowRays extension deactivated');
-	clearDecorations();
 } 
