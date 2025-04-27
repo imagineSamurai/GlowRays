@@ -169,27 +169,27 @@ To enable the focused definition glow feature:
 
 ## 📸 Screenshots
 
-[Quick comment]: <> (All the photos are in /assets. Images were not displaying in the marketplace. After several attempts, I found a solution: I uploaded the images to my website and linked them through the markdown file.)
+[Quick comment]: <> (If you are in the Marketplace and want to see the image, go to the project repository)
 
 ### GlowRays UI (**only on v1.3.0**)
-<img src="https://i.imgur.com/A70xuKk.png" width="700" alt="GlowRays UI">
+<img src="assets/GlowRaysUI.png" width="700" alt="GlowRays UI, If you are in the Marketplace and want to see the image, go to the project repository">
 
 
 ### JavaScript with Glow Effect
-<img src="https://hybridipa-blog.web.app/assets/images/GlowRays/javascript-example.png" width="700" alt="JavaScript Glow Effect">
+<img src="assets/javascript-example.png" width="700" alt="JavaScript Glow Effect, If you are in the Marketplace and want to see the image, go to the project repository">
 
 ### Python with Glow Effect
-<img src="https://hybridipa-blog.web.app/assets/images/GlowRays/python-example.png" width="700" alt="Python Glow Effect">
+<img src="assets/python-example.png" width="700" alt="Python Glow Effect, If you are in the Marketplace and want to see the image, go to the project repository">
 
 ### Different Intensity Levels
 #### intensity = 1
-<img src="https://hybridipa-blog.web.app/assets/images/GlowRays/1.png" width="700" alt="Intensity 1">
+<img src="assets/1.png" width="700" alt="Intensity 1, If you are in the Marketplace and want to see the image, go to the project repository">
 
 #### intensity = 10
-<img src="https://hybridipa-blog.web.app/assets/images/GlowRays/10.png" width="700" alt="Intensity 10">
+<img src="assets/10.png" width="700" alt="Intensity 10, If you are in the Marketplace and want to see the image, go to the project repository">
 
 #### intensity = 20
-<img src="https://hybridipa-blog.web.app/assets/images/GlowRays/20.png" width="700" alt="Intensity 20">
+<img src="assets/20.png" width="700" alt="Intensity 20, If you are in the Marketplace and want to see the image, go to the project repository,">
 ## 🔍 Troubleshooting
 
 ### Common Issues
@@ -231,9 +231,9 @@ If you experience performance issues with dynamic features:
 
 ## 📝 Release Notes
 
-### Version 1.3.1
+### Version 1.3.1 & 1.3.2
 
-> We are excited to announce the release of **Version 1.3.1**!
+> We are excited to announce the release of **Version 1.3.1** & **Version 1.3.2**!
 > 
 > This update was issued to address a technical issue encountered during the publishing process to the marketplace.  
 > There were no code changes or feature updates compared to Version 1.3.0.  
