@@ -171,6 +171,10 @@ To enable the focused definition glow feature:
 
 [Quick comment]: <> (All the photos are in /assets. Images were not displaying in the marketplace. After several attempts, I found a solution: I uploaded the images to my website and linked them through the markdown file.)
 
+### GlowRays UI (**only on v1.3.0**)
+<img src="https://hybridipa-blog.web.app/assets/images/GlowRays/ui.png" width="700" alt="GlowRays UI">
+
+
 ### JavaScript with Glow Effect
 <img src="https://hybridipa-blog.web.app/assets/images/GlowRays/javascript-example.png" width="700" alt="JavaScript Glow Effect">
 
@@ -186,7 +190,6 @@ To enable the focused definition glow feature:
 
 #### intensity = 20
 <img src="https://hybridipa-blog.web.app/assets/images/GlowRays/20.png" width="700" alt="Intensity 20">
-
 ## 🔍 Troubleshooting
 
 ### Common Issues
