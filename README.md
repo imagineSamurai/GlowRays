@@ -176,20 +176,20 @@ To enable the focused definition glow feature:
 
 
 ### JavaScript with Glow Effect
-<img src="assets/javascript-example.png" width="700" alt="JavaScript Glow Effect, If you are in the Marketplace and want to see the image, go to the project repository">
+<img src="https://raw.githubusercontent.com/imaginesamurai/GlowRays/master/assets/javascript-example.png" width="700" alt="JavaScript Glow Effect, If you are in the Marketplace and want to see the image, go to the project repository">
 
 ### Python with Glow Effect
-<img src="assets/python-example.png" width="700" alt="Python Glow Effect, If you are in the Marketplace and want to see the image, go to the project repository">
+<img src="https://raw.githubusercontent.com/imaginesamurai/GlowRays/master/assets/python-example.png" width="700" alt="Python Glow Effect, If you are in the Marketplace and want to see the image, go to the project repository">
 
 ### Different Intensity Levels
 #### intensity = 1
-<img src="assets/1.png" width="700" alt="Intensity 1, If you are in the Marketplace and want to see the image, go to the project repository">
+<img src="https://raw.githubusercontent.com/imaginesamurai/GlowRays/master/assets/1.png" width="700" alt="Intensity 1, If you are in the Marketplace and want to see the image, go to the project repository">
 
 #### intensity = 10
-<img src="assets/10.png" width="700" alt="Intensity 10, If you are in the Marketplace and want to see the image, go to the project repository">
+<img src="https://raw.githubusercontent.com/imaginesamurai/GlowRays/master/assets/10.png" width="700" alt="Intensity 10, If you are in the Marketplace and want to see the image, go to the project repository">
 
 #### intensity = 20
-<img src="assets/20.png" width="700" alt="Intensity 20, If you are in the Marketplace and want to see the image, go to the project repository,">
+<img src="https://raw.githubusercontent.com/imaginesamurai/GlowRays/master/assets/20.png" width="700" alt="Intensity 20, If you are in the Marketplace and want to see the image, go to the project repository,">
 ## 🔍 Troubleshooting
 
 ### Common Issues
