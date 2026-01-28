@@ -89,7 +89,7 @@ npx vsce package
 code --install-extension glowrays-*.vsix
 ```
 
-## ⚙️ Extension Settings
+## Extension Settings
 
 This extension contributes the following settings:
 
