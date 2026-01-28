@@ -190,7 +190,8 @@ To enable the focused definition glow feature:
 
 #### intensity = 20
 <img src="https://raw.githubusercontent.com/imaginesamurai/GlowRays/master/assets/20.png" width="700" alt="Intensity 20, If you are in the Marketplace and want to see the image, go to the project repository,">
-## 🔍 Troubleshooting
+
+## Troubleshooting
 
 ### Common Issues
 
