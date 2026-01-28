@@ -5,7 +5,7 @@
 <a href="https://marketplace.visualstudio.com/items?itemName=imagineSamurai.glowrays">![VS Code Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/imagineSamurai.glowrays)</a>
 <a href="https://x.com/GlowRays_VSC">![Twitter Follow](https://img.shields.io/twitter/follow/GlowRays_VSC?style=social)</a>
 
-> ## ⚠️ DYNAMIC FEATURES ALPHA NOTICE
+> ##  DYNAMIC FEATURES ALPHA NOTICE
 > The core glow functionality of this extension works great! Only the **dynamic intensity feature** is currently in alpha development.
 > Due to VS Code API limitations, the dynamic glow effect may cause performance issues on some systems.
 > Dynamic features are disabled by default and can be manually enabled if desired.
@@ -14,7 +14,7 @@
 
 A Visual Studio Code extension that makes text glow with the same color as the syntax highlighting, creating a beautiful neon effect in your editor.
 
-## ✨ Features
+##  Features
 
 - **Glowing Text**: Applies a customizable glow effect to text in the editor
 - **Theme Compatible**: Preserves the original syntax highlighting colors from your theme
@@ -38,11 +38,11 @@ A Visual Studio Code extension that makes text glow with the same color as the s
 - **Performance Optimized**: Minimal impact on editor performance for most files
 
 
-## 📋 Requirements
+##  Requirements
 
 - Visual Studio Code v1.80.0 or higher
 
-## 🔧 Installation
+##  Installation
 
 ### VS Code Marketplace
 #### First method 
@@ -112,7 +112,7 @@ This extension contributes the following settings:
   * Fourth value: Enabled state ('true' or 'false')
 * `glowrays.pauseAnimationWhileTyping`: Pause animation updates during typing to prevent flickering (default: false)
 
-## 🚀 Getting Started
+##  Getting Started
 
 After installation, the extension is enabled by default with medium intensity. You can customize the settings in two ways:
 
@@ -167,7 +167,7 @@ To enable the focused definition glow feature:
 }
 ```
 
-## 📸 Screenshots
+##  Screenshots
 
 [Quick comment]: <> (If you are in the Marketplace and want to see the image, go to the project repository)
 
@@ -212,7 +212,7 @@ If you experience any disruptions or flickering while typing:
 
 GlowRays works with most popular VS Code themes. If you encounter issues with a specific theme, please report it in the [Issues](https://github.com/imagineSamurai/GlowRays/issues) section.
 
-## ⚠️ Known Issues
+##  Known Issues
 
 - **Dynamic features limitations**: The dynamic intensity feature is still in alpha development and may cause performance issues, flickering, or editor lag on some systems.
 - **Large files impact**: Performance may be impacted on large files, especially with dynamic features enabled.
@@ -229,7 +229,7 @@ If you experience performance issues with dynamic features:
 2. Use a static intensity value instead (the default setting)
 3. Consider disabling the extension for very large files
 
-## 📝 Release Notes
+##  Release Notes
 
 ### Version 1.3.1 & 1.3.2
 
@@ -241,7 +241,7 @@ If you experience performance issues with dynamic features:
 
 
 
-### 📝 What's New in v1.3.0
+###  What's New in v1.3.0
 
 - **Settings UI**: Visual interface to configure all GlowRays settings
 - **Advanced Settings Mode**: Dedicated section for advanced features with warning for low-end devices
@@ -278,7 +278,7 @@ Initial release of GlowRays Extension:
 - Configurable intensity
 - Language filtering options
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -303,21 +303,21 @@ code .
 # Press F5 to start debugging
 ```
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👨‍💻 Author
+##  Author
 
 [imagineSamurai](https://github.com/imagineSamurai)
 
-## 💖 Support
+##  Support
 
 If you find this extension useful, please consider:
 
-- ⭐ Star this repository on GitHub
-- 🌟 Rate it on the VS Code Marketplace
-- 📢 Share it with friends and colleagues
-- 🐦 Follow us on X (Twitter): [@GlowRays_VSC](https://twitter.com/GlowRays_VSC)
-- ☕ You can support me by using [Ko-fi](https://ko-fi.com/imaginesamurai)
+-  Star this repository on GitHub
+-  Rate it on the VS Code Marketplace
+-  Share it with friends and colleagues
+-  Follow us on X (Twitter): [@GlowRays_VSC](https://twitter.com/GlowRays_VSC)
+-  You can support me by using [Ko-fi](https://ko-fi.com/imaginesamurai)
 
